@@ -413,17 +413,20 @@ const pricingTiers: PricingTier[] = [
   // },
   {
     name: "Islamic Educator Platform",
-    price: "Free",
-    period: "for one teaching quarter",
+    price: "$0",
+    period: "for one teaching quarter trial",
     description:
       "A Learning Management Platform built for Online Islamic schooling needs. Create structured curricula with lesson checkpoints, track student progress, and build community—all under your branding.",
     features: [
+      { text: "Try the system and see if it is right for you and your team" },
+      { text: "Your specific program branding" },
+      { text: "Program data stays protected" },
       { text: "Create & manage custom course modules" },
       { text: "Lesson barriers requiring instructor checkpoints" },
       { text: "Student progress tracking & assessments" },
       { text: "Private community page for engagement" },
-      { text: "Your branding, your domain, your data" },
       { text: "Dedicated onboarding & educator support" },
+      { text: "NOT included: your custom domain", isNegative: true },
     ],
     badge: "For programs ready to expand",
     ctaLabel: "Schedule a demo",
