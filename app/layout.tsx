@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,33 +14,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muslim Web",
-  icons: {
-    icon: "/favicon.ico", // Path to your ICO file in the public folder
-  },
-  description: "A program to help Muslim educators build a professional online presence.",
+  title: 'Cold to Warm Leads | Realtor Automation for Edmonton & Beyond',
+  description: 'Turn cold leads into warm sales with automation + daily human oversight. Real people managing your system, not just bots. Start at $50/month.',
+  keywords: 'realtor automation, cold lead nurture, real estate follow-up system, realtor software Edmonton, lead automation, managed services',
   openGraph: {
-    title: "Muslim Web",
-    description: "A program to help Muslim educators build a professional online presence.",
-    //url: "https://yourwebsite.com",
-    siteName: "Muslim Web",
+    title: 'Cold to Warm Leads | Realtor Automation System',
+    description: 'Automation + human oversight. We handle the follow-up with real people monitoring daily. You focus on closing deals.',
+    url: 'https://coldtowarmleads.ca',
+    type: 'website',
     images: [
       {
-        url: "/website-banner.png", // Path to your banner image in public folder
+        url: 'https://coldtowarmleads.ca/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: "Muslim Web Website Banner",
+        alt: 'Cold to Warm Leads - Realtor Automation Partnership with Human Oversight',
       },
     ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Muslim Web",
-    description: "A program to help Muslim educators build a professional online presence.",
-    images: ["/website-banner.png"],
-  },
+  }
 };
 
 export default function RootLayout({
@@ -48,11 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );
