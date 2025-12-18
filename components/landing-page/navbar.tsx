@@ -19,7 +19,7 @@ const NAV_LINKS = [
 
 // Simplified links for the new navbar structure
 const SIMPLIFIED_LINKS = [
-  { label: "Why Preference Based Matchmaking?", href: "#how-it-works" },
+  { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
 ] as const
 

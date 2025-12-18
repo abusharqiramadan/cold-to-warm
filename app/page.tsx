@@ -1,18 +1,50 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, Zap, TrendingUp, Mail, AlertCircle, ArrowRight, Handshake, Send, MessageSquare, CalendarCheck, User, Bug, ArrowUpWideNarrow, IceCream, TriangleAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NoelPFP from '@/lib/images/noel-pfp.png';
 import Link from 'next/link';
-import PricingCard from '@/components/landing-page/pricing-plan';
 import { NavBar } from '@/components/landing-page/navbar';
 import { CommonFooter } from '@/components/landing-page/common-footer';
 import { GiMapleLeaf } from 'react-icons/gi'
 
 export default function ColdToWarmLanding() {
   const [email, setEmail] = useState('');
+
+  const calculateTimeLeft = () => {
+    // Current date is December 18, 2025
+    // Target date is Feb 1, 2026
+    const countDownDate = new Date('Feb 1, 2026 00:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    if (distance < 0) {
+      return { expired: true, text: 'EXPIRED' };
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+    return {
+      expired: false,
+      text: `${days}d ${hours}:${minutes}:${seconds}`,
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(timer);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -46,11 +78,11 @@ export default function ColdToWarmLanding() {
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Turn Cold Leads Into  <br /> <span className="text-yellow-400">Hot Prospects</span>, With Preference-Based Matching
+            Never Lose a Deal to <br /> <span className="text-yellow-400">Forgotten Follow-Up</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Your cold leads aren't gone—they just want the RIGHT property. We match them to your new listings. You close deals. We celebrate.
+            We send personalized emails from YOUR company to your old customers. Not spam. Real check-ins that keep you top-of-mind. You focus on the jobs. We handle the follow-up.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 justify-center mb-12">
@@ -69,9 +101,9 @@ export default function ColdToWarmLanding() {
           {/* ROI Statement */}
           <motion.div variants={itemVariants} className="inline-block p-6 rounded-2xl bg-gray-900 border border-red-500/50 shadow-2xl shadow-red-500/20">
             <p className="text-gray-100">
-              <span className="font-bold text-lg">1 extra deal/year</span> lost from cold leads → <span className="text-red-400 font-bold">-$8,750 in commission</span>
+              <span className="font-bold text-lg">1 maintenance contract missed</span> = <span className="text-red-400 font-bold">-$500+ in revenue</span>
             </p>
-            <p className="text-sm text-gray-400 mt-2">Every cold lead you don't follow up could cost you thousands in commissions.</p>
+            <p className="text-sm text-gray-400 mt-2">Every cold lead you don't follow up is money left on the table.</p>
           </motion.div>
         </motion.div>
       </header>
@@ -87,10 +119,10 @@ export default function ColdToWarmLanding() {
         >
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-white mb-4">
-              The Follow-Up Gap Every Realtor Faces
+              The Follow-Up Gap Every HVAC Contractor Faces
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              You're great at showing properties and closing deals. But here's the problem: buyers go silent, and you're too busy to follow up with everyone. Those cold leads? They're worth thousands in lost commissions.
+              You're great at doing jobs and fixing systems. But here's the problem: old customers go silent, and you're too busy to stay in touch. Those maintenance contracts and seasonal upsells? They're worth hundreds in lost revenue.
             </p>
           </div>
 
@@ -101,27 +133,27 @@ export default function ColdToWarmLanding() {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 font-bold">×</span>
-                  <span>You show a property. Buyer says "let me think about it"</span>
+                  <span>You finish a job. Customer says "thanks, I'll call if I need anything"</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 font-bold">×</span>
-                  <span>You add them to your follow-up list</span>
+                  <span>You add them to your customer list</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 font-bold">×</span>
-                  <span>You're busy closing other deals</span>
+                  <span>You're busy with new service calls</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 font-bold">×</span>
-                  <span>2 weeks later? They've moved on to another realtor.</span>
+                  <span>6 months later? They've forgotten about you</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 font-bold">×</span>
-                  <span>Buyer calls a different realtor and closes with them</span>
+                  <span>Their AC breaks. They call the first HVAC company that comes to mind</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-500 font-bold">×</span>
-                  <span>The cold lead goes to a competitor who stayed in touch</span>
+                  <span>That maintenance contract goes to a competitor</span>
                 </li>
               </ul>
             </motion.div>
@@ -132,27 +164,27 @@ export default function ColdToWarmLanding() {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
-                  <span>You show a property. Buyer says "let me think about it"</span>
+                  <span>You finish a job. Customer is satisfied</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
-                  <span>We handle the follow-up so you can focus on closing</span>
+                  <span>We handle personalized follow-ups so you can focus on new jobs</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
-                  <span>You focus on active deals. We send monthly targetted market updates your cold leads want to hear</span>
+                  <span>We send targeted emails from YOUR company (not spam, personal check-ins)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
-                  <span>Buyer stays engaged. Your listing stays top-of-mind and relevant</span>
+                  <span>Seasonal reminders ("Time for spring AC prep", "Winter heating check")</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
-                  <span>When they're ready—we alert you immediately</span>
+                  <span>Customer remembers you. They call YOU when they need service</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold">✓</span>
-                  <span>You close the deal and earn the commission</span>
+                  <span>You close the job and earn the revenue</span>
                 </li>
               </ul>
             </motion.div>
@@ -160,9 +192,9 @@ export default function ColdToWarmLanding() {
 
           <motion.div variants={itemVariants} className="mt-16 p-8 rounded-2xl bg-yellow-500/10 border-2 border-yellow-500/50 text-center">
             <p className="text-lg text-white">
-              <span className="font-bold">The research is clear:</span> 80% of sales need 5+ touchpoints. Most realtors give up after 1-2 tries.
+              <span className="font-bold">The reality:</span> Most HVAC contractors get zero follow-up emails from their customers. Your competitors aren't staying in touch either.
             </p>
-            <p className="text-gray-300 mt-2">That's where we come in. We handle the patience. You handle the closing.</p>
+            <p className="text-gray-300 mt-2">That's your opportunity. We handle the follow-ups. You get the calls.</p>
           </motion.div>
         </motion.div>
       </section>
@@ -181,7 +213,7 @@ export default function ColdToWarmLanding() {
               How We Work Together
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              We've built a simple 4-step partnership that turns your cold leads into real commissions.
+              Personal emails from your company. Not marketing. Real follow-up that works.
             </p>
           </div>
 
@@ -199,11 +231,11 @@ export default function ColdToWarmLanding() {
                   <div className="rounded-2xl p-8 bg-gray-900 border border-yellow-500/30">
                     <div className="flex items-start gap-4 mb-3">
                       <MessageSquare className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">You Give Us Your Cold Leads</h3>
+                      <h3 className="text-2xl font-bold text-white">You Give Us Your Customer List</h3>
                     </div>
-                    <p className="text-gray-400">You provide us with names and emails of your cold leads—the ones who said "let me think about it" and disappeared. We take it from there.</p>
+                    <p className="text-gray-400">Provide us with names and emails of your past customers—people who had service with you but haven't called back. We take it from there.</p>
                     <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">CSV or Google Sheet</span>
+                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">CSV, Excel, or Google Sheet</span>
                     </div>
                   </div>
                 </div>
@@ -232,11 +264,12 @@ export default function ColdToWarmLanding() {
                   <div className="rounded-2xl p-8 bg-gray-900 border border-yellow-500/30">
                     <div className="flex items-start gap-4 mb-3">
                       <CalendarCheck className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">We Match Their Preferences to Listings</h3>
+                      <h3 className="text-2xl font-bold text-white">We Set Up Personalized Follow-Ups</h3>
                     </div>
-                    <p className="text-gray-400">We handle all the technical setup. We configure your email sequences on your behalf, integrate everything seamlessly, and test it to make sure it works perfectly for your market.</p>
+                    <p className="text-gray-400">We create personalized email templates and set up your follow-up schedule. Seasonal reminders ("Spring AC service time", "Winter heating check"), maintenance upsells, and personal check-ins—all sent from YOUR company email.</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">7-day setup</span>
+                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Fully personalized</span>
                     </div>
                   </div>
                 </div>
@@ -265,11 +298,12 @@ export default function ColdToWarmLanding() {
                   <div className="rounded-2xl p-8 bg-gray-900 border border-yellow-500/30">
                     <div className="flex items-start gap-4 mb-3">
                       <Send className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">Your Listing Finds Them (At the Right Time)</h3>
+                      <h3 className="text-2xl font-bold text-white">They Get Personal Emails From You</h3>
                     </div>
-                    <p className="text-gray-400">Every month, they hear from you with market updates they actually want to see. It's like you're staying in touch—but we're doing the heavy lifting while you focus on active clients and closings.</p>
+                    <p className="text-gray-400">Customers receive personalized emails from your company—checking in on them, suggesting seasonal service, offering maintenance packages. It feels like you're reaching out personally (because you are—we're just making sure it happens consistently).</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Monthly emails</span>
+                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">High inbox placement</span>
                     </div>
                   </div>
                 </div>
@@ -298,11 +332,12 @@ export default function ColdToWarmLanding() {
                   <div className="rounded-2xl p-8 bg-gradient-to-r from-yellow-500/20 to-yellow-500/5 border border-yellow-400">
                     <div className="flex items-start gap-4 mb-3">
                       <Handshake className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">You Close the Deal (& We Celebrate)</h3>
+                      <h3 className="text-2xl font-bold text-white">They Call You (& You Do the Work)</h3>
                     </div>
-                    <p className="text-gray-400">When a lead shows interest—we alert you immediately. You take over, follow up, and close the sale. We handled sending the message. You handle the relationship and the commission.</p>
+                    <p className="text-gray-400">Customer remembers you. AC needs service. They call YOU. You handle the job, collect the revenue, and earn the full profit. We handled the follow-up. You handle the relationship and the payday.</p>
                     <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Real-time alerts</span>
+                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Warm leads</span>
+                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">You earn 100%</span>
                     </div>
                   </div>
                 </div>
@@ -323,31 +358,31 @@ export default function ColdToWarmLanding() {
         >
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-white mb-4">
-              Estimated Results From Our Service
+              Expected Results
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border border-yellow-500/50 text-center flex flex-col items-center justify-center min-h-[280px]">
-              <p className="text-5xl font-bold text-yellow-400 mb-2">30%</p>
-              <p className="text-white font-semibold">Cold Leads Recovered</p>
-              <p className="text-gray-400 text-sm mt-2">Average leads that re-engage per month</p>
+              <p className="text-5xl font-bold text-yellow-400 mb-2">20-30%</p>
+              <p className="text-white font-semibold">Customer Re-engagement Rate</p>
+              <p className="text-gray-400 text-sm mt-2">Old customers reconnecting and booking service</p>
             </motion.div>
 
             <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border border-yellow-500/50 text-center flex flex-col items-center justify-center min-h-[280px]">
-              <p className="text-5xl font-bold text-yellow-400 mb-2">8+ hrs</p>
+              <p className="text-5xl font-bold text-yellow-400 mb-2">5+ hrs</p>
               <p className="text-white font-semibold">Time Saved Monthly</p>
-              <p className="text-gray-400 text-sm mt-2">8+ hours saved per month = 96+ hours/year</p>
+              <p className="text-gray-400 text-sm mt-2">Not manually calling or emailing past customers</p>
             </motion.div>
 
             <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border border-yellow-500/50 text-center flex flex-col justify-center min-h-[280px]">
               <div className='relative mb-5'>
-                <p className="text-5xl font-bold text-yellow-400 mb-2">Up to 1-3</p>
-                <p className="text-white font-semibold">Extra Deals/Year</p>
-                <p className="text-gray-400 text-sm mt-2">From reactivated cold leads</p>
+                <p className="text-5xl font-bold text-yellow-400 mb-2">2-4</p>
+                <p className="text-white font-semibold">Extra Service Calls/Month</p>
+                <p className="text-gray-400 text-sm mt-2">From customers who remember you</p>
               </div>
               <p className="text-gray-500 text-xs mt-0 italic border-t border-yellow-500/30 pt-3">
-                *Results vary based on lead quality, market conditions, closing ability, and consistent follow-through with interested leads.
+                *Results vary based on customer list size, service quality, and follow-up consistency.
               </p>
             </motion.div>
           </div>
@@ -362,13 +397,13 @@ export default function ColdToWarmLanding() {
                 </Avatar>
               </div>
               <div className="flex-grow">
-                <h2 className="text-2xl font-bold text-white mb-2">Hi, I'm Noel 👋🏿l</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">Hi, I'm Noel 👋🏿</h2>
                 <p className="text-yellow-400 font-semibold mb-4">Founder & Software Engineer</p>
                 <p className="text-gray-300 leading-relaxed">
-                  I'm a software engineer who found this pain of realtors losing deals to forgotten follow-up. I saw the problem and built a solution. Now, we partner together. I handle the automation with my technical skills, you handle what you do best: closing deals and earning commissions.
+                  I'm a software engineer who realized HVAC contractors were losing thousands in revenue because they weren't following up with past customers. I built a solution that sends personalized follow-ups automatically so you don't have to do it manually.
                 </p>
                 <p className="text-gray-300 leading-relaxed mt-3">
-                  This isn't just a tool. It's a partnership. We win when you win.
+                  This isn't just a tool. It's your follow-up team. You do the work. We handle the reminders.
                 </p>
               </div>
             </div>
@@ -387,14 +422,61 @@ export default function ColdToWarmLanding() {
         >
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-white mb-4">
-              Cold to Warm Leads Pricing
+              Simple Pricing
             </h2>
             <p className="text-xl text-gray-400">
-              No hidden fees. Cancel anytime.
+              $50/month. Personalized follow-ups from your company. Cancel anytime.
             </p>
           </div>
 
-          <PricingCard />
+          <motion.div
+            variants={itemVariants}
+            className="max-w-2xl mx-auto p-8 rounded-2xl bg-gray-900 border-2 border-yellow-400 shadow-2xl shadow-yellow-400/30 text-center"
+          >
+            <p className="text-gray-400 text-sm uppercase tracking-widest font-bold mb-4">LAUNCH SPECIAL - 50% OFF EARLY ADOPTERS</p>
+
+            {/* Monthly Price Update */}
+            <div className="flex justify-center items-baseline mb-2">
+              <span className="text-3xl font-bold line-through text-gray-500 mr-4">$100</span>
+              <p className="text-6xl font-bold text-yellow-400">$50<span className="text-2xl text-gray-400">/month</span></p>
+            </div>
+
+            {/* No setup fee during launch 
+            <p className="text-gray-400 mb-8">No setup fee during launch</p>*/}
+
+            {/* Countdown Timer Section */}
+            <div className="mb-8 p-3 bg-gray-800 rounded-lg border border-yellow-500/50">
+              <p className="text-sm font-semibold text-yellow-400 mb-1">Launch Pricing Ends February 2026</p>
+              <div className={`text-xl font-mono text-white ${timeLeft.expired ? 'text-red-500' : ''}`}>
+                {timeLeft.text}
+              </div>
+            </div>
+
+            <ul className="space-y-3 mb-8 text-left">
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-yellow-400" aria-hidden="true" />
+                <span className="text-gray-300">Personalized emails sent from YOUR company to past customers</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-yellow-400" aria-hidden="true" />
+                <span className="text-gray-300">Monthly follow-ups and seasonal service reminders</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <TriangleAlert className="w-5 h-5 text-yellow-400" aria-hidden="true" />
+                <span className="text-gray-300">Real-time alerts when customers engage</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <ArrowUpWideNarrow className="w-5 h-5 text-yellow-400" aria-hidden="true" />
+                <span className="text-gray-300">Easy customer list updates anytime</span>
+              </li>
+            </ul>
+            <Link href="/apply">
+              <button className="cursor-pointer w-full py-4 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-300 transition transform hover:scale-101">
+                Get Started Now
+              </button>
+            </Link>
+            <p className="text-gray-400 text-sm mt-4">First month: Just $100 (launch pricing + $50 setup fee)</p>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -408,10 +490,10 @@ export default function ColdToWarmLanding() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-5xl font-bold text-white mb-6">
-            Ready to Stop Losing Deals?
+            Stop Letting Revenue Walk Out The Door
           </h2>
           <p className="text-xl text-gray-400 mb-10">
-            Start turning cold leads into warm sales this week.
+            Start turning old customers into repeat business this week. $50 /month. Personal follow-ups. Real results.
           </p>
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/apply">
