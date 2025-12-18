@@ -14,9 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Cold to Warm Leads | Realtor Automation for Edmonton & Beyond',
+  title: 'Cold to Warm Leads',
   description: 'Turn cold leads into warm sales with automation + daily human oversight. Real people managing your system, not just bots. Start at $50/month.',
   keywords: 'realtor automation, cold lead nurture, real estate follow-up system, realtor software Edmonton, lead automation, managed services',
+  icons: '/favicon.ico', // Add this line
   openGraph: {
     title: 'Cold to Warm Leads | Realtor Automation System',
     description: 'Automation + human oversight. We handle the follow-up with real people monitoring daily. You focus on closing deals.',
