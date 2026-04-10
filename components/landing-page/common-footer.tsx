@@ -14,7 +14,7 @@ export function CommonFooter() {
                             <span className="text-yellow-400">Warm</span>
                         </div>
                         <p className="text-gray-400 text-sm">
-                            Turning cold leads into commissions for realtors.
+                            Turning cold leads into commissions for HVAC companies.
                         </p>
                     </div>
 
@@ -33,7 +33,6 @@ export function CommonFooter() {
                         <ul className="space-y-2 text-gray-400 text-sm">
                             <li><a href="#" className="hover:text-yellow-400 transition">About</a></li>
                             <li><a href="#" className="hover:text-yellow-400 transition">Contact</a></li>
-                            <li><a href="#" className="hover:text-yellow-400 transition">Blog</a></li>
                         </ul>
                     </div>
 
@@ -55,7 +54,7 @@ export function CommonFooter() {
                             © 2025 Cold→Warm Leads. All rights reserved.
                         </p>
                         <p className="text-gray-500 text-xs">
-                            Built for realtors who don't want to lose deals to forgotten follow-up.
+                            Built for HVAC companies who don't want to lose deals to forgotten follow-up.
                         </p>
                     </div>
                 </div>
