@@ -106,7 +106,7 @@ export default function ColdToWarmLanding() {
           <motion.div variants={itemVariants} className="relative inline-block p-8 rounded-2xl bg-gray-900/50 border border-red-500/30 backdrop-blur-sm">
             <div className="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">The Reality</div>
             <p className="text-gray-100 text-lg">
-              Most shops have **$20,000+** sitting in old files.
+              Most shops have <span className="bold">$20,000+</span> sitting in old files.
             </p>
             <p className="text-sm text-gray-400 mt-2">
               We help you pull that money back into your bays without you lifting a finger.
@@ -406,7 +406,7 @@ export default function ColdToWarmLanding() {
               Simple Pricing
             </h2>
             <p className="text-xl text-gray-400">
-              Just $50 a month. We talk to your old customers for you. Cancel anytime.
+              Just $72 a month. We talk to your old customers for you. Cancel anytime.
             </p>
           </div>
 
@@ -414,12 +414,12 @@ export default function ColdToWarmLanding() {
             variants={itemVariants}
             className="max-w-2xl mx-auto p-8 rounded-2xl bg-gray-900 border-2 border-yellow-400 shadow-2xl shadow-yellow-400/30 text-center"
           >
-            <p className="text-gray-400 text-sm uppercase tracking-widest font-bold mb-4">EARLY BIRD DEAL — 50% OFF</p>
+            <p className="text-gray-400 text-sm uppercase tracking-widest font-bold mb-4">EARLY BIRD DEAL — 32% OFF</p>
 
             {/* Monthly Price */}
             <div className="flex justify-center items-baseline mb-2">
-              <span className="text-3xl font-bold line-through text-gray-500 mr-4">$100</span>
-              <p className="text-6xl font-bold text-yellow-400">$50<span className="text-2xl text-gray-400">/month</span></p>
+              <span className="text-3xl font-bold line-through text-gray-500 mr-4">$106</span>
+              <p className="text-6xl font-bold text-yellow-400">$72<span className="text-2xl text-gray-400">/month</span></p>
             </div>
 
             {/* Countdown Timer Section */}
@@ -455,7 +455,7 @@ export default function ColdToWarmLanding() {
               </button>
             </Link>
 
-            <p className="text-gray-400 text-sm mt-4">First month: $100 ($50 setup fee + $50 first month)</p>
+            <p className="text-gray-400 text-sm mt-4">:)</p>
           </motion.div>
         </motion.div>
       </section>
@@ -473,7 +473,7 @@ export default function ColdToWarmLanding() {
             Stop letting your <br /> <span className="text-red-500">old customers forget you</span>
           </h2>
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-            Start getting your regulars back into your shop this week. For just $50 a month, we make sure they call YOU when they need work.
+            Start getting your regulars back into your shop this week. For just $72 a month, we make sure they call YOU when they need work.
           </p>
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/apply">
