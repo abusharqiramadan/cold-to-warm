@@ -424,9 +424,9 @@ export default function ColdToWarmLanding() {
 
             {/* Countdown Timer Section */}
             <div className="mb-8 p-3 bg-gray-800 rounded-lg border border-yellow-500/50">
-              <p className="text-sm font-semibold text-yellow-400 mb-1">Low Price Ends June 2026</p>
+              <p className="text-sm font-semibold text-yellow-400 mb-1">Low Price Offer Left For</p>
               <div className={`text-xl font-mono text-white ${timeLeft.expired ? 'text-red-500' : ''}`}>
-                {timeLeft.text}
+                5 Potentials
               </div>
             </div>
 
@@ -455,7 +455,7 @@ export default function ColdToWarmLanding() {
               </button>
             </Link>
 
-            <p className="text-gray-400 text-sm mt-4">:)</p>
+            <p className="text-gray-400 text-sm mt-4">(The respective discount is permanent)</p>
           </motion.div>
         </motion.div>
       </section>
