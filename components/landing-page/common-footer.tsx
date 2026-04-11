@@ -14,7 +14,7 @@ export function CommonFooter() {
                             <span className="text-yellow-400">Warm</span>
                         </div>
                         <p className="text-gray-400 text-sm">
-                            Turning cold leads into commissions for HVAC companies.
+                            Turning cold leads into new 5-star reviews and referrals.
                         </p>
                     </div>
 

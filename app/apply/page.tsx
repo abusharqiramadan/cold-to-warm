@@ -32,8 +32,14 @@ export default function ApplyPage() {
             {/* Navigation */}
             <NavBar />
 
-            {/* Application Section */}
-            <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-black via-gray-900 to-black" id="apply-form">
+            {/* ═══════════════════════════════════════════════════════════════════
+    APPLICATION SECTION
+═══════════════════════════════════════════════════════════════════ */}
+            <section
+                className="pt-32 pb-24 px-6"
+                id="apply-form"
+                style={{ background: "linear-gradient(160deg, #06122a 0%, #080d1c 55%, #120a03 100%)" }}
+            >
                 <motion.div
                     className="max-w-4xl mx-auto"
                     variants={containerVariants}
@@ -42,46 +48,55 @@ export default function ApplyPage() {
                 >
                     {/* Header */}
                     <motion.div variants={itemVariants} className="text-center mb-12">
-                        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                            Ready to Turn <span className="text-yellow-400">Cold Leads Warm</span>?
+                        <span className="inline-block font-sora text-[10px] font-bold tracking-[0.15em] uppercase text-orange-400 border border-orange-500/30 bg-orange-500/[0.07] px-3 py-1 rounded-full mb-5">
+                            Apply Now
+                        </span>
+                        <h1 className="text-4xl md:text-5xl font-sora font-extrabold text-slate-100 mb-4 tracking-tight">
+                            Ready to Turn{" "}
+                            <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
+                                Cold Leads Warm
+                            </span>
+                            ?
                         </h1>
-                        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                            Please complete this brief application so we can understand your specific needs and ensure a perfect fit for our preference-based matching system.
+                        <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                            Complete this brief application so we can understand your specific needs and
+                            ensure a perfect fit.
                         </p>
                     </motion.div>
 
-                    {/* Warning/Instruction Box */}
-                    <motion.div variants={itemVariants} className="mb-8 p-4 md:p-6 rounded-xl bg-gray-900 border border-yellow-500/50 flex items-start gap-4">
-                        <TriangleAlert className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+                    {/* Notice Box */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="mb-8 p-5 rounded-2xl border flex items-start gap-4"
+                        style={{ background: "rgba(234,88,12,0.06)", borderColor: "rgba(234,88,12,0.25)" }}
+                    >
+                        <TriangleAlert className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
                         <div>
-                            <h2 className="text-xl font-semibold text-white">Important Note:</h2>
-                            <p className="text-gray-300 mt-1">
+                            <h2 className="font-sora font-bold text-slate-200 text-base mb-0.5">
+                                Important Note
+                            </h2>
+                            <p className="text-slate-400 text-sm leading-relaxed">
                                 We will reach out within 24 hours to confirm your setup and next steps.
                             </p>
                         </div>
                     </motion.div>
 
+                    {/* Typeform Embed */}
                     <motion.div
                         variants={itemVariants}
-                        // Reduced the height of the container
-                        className="w-full h-[500px] sm:h-[700px] bg-gray-900 rounded-xl overflow-hidden shadow-2xl shadow-yellow-900/50 relative"
+                        className="w-full h-[500px] sm:h-[700px] rounded-2xl overflow-hidden border"
+                        style={{
+                            background: "rgba(255,255,255,0.02)",
+                            borderColor: "rgba(255,255,255,0.07)",
+                            boxShadow: "0 24px 64px rgba(234,88,12,0.08)",
+                        }}
                     >
-                        {/* The Typeform Widget, styled to take up 100% of the parent's height and width */}
                         <Widget
-                            id="BUxvcNmc"
-                            style={{ width: '100%', height: '100%' }} // <- Updated to 100% width and height
+                            id="OGJY9FIT"
+                            style={{ width: "100%", height: "100%" }}
                             className="my-form"
                         />
                     </motion.div>
-
-                    {/* Footer Call-to-Action
-                    <motion.div variants={itemVariants} className="mt-12 text-center">
-                        <Link href="#contact">
-                            <button className="cursor-pointer px-8 py-4 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-300 transition transform hover:scale-101 flex items-center justify-center gap-2 mx-auto">
-                                Contact Support If You Have Questions <ArrowRight className="w-5 h-5" />
-                            </button>
-                        </Link>
-                    </motion.div>*/}
                 </motion.div>
             </section>
 

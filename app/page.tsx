@@ -1,7 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Zap, TrendingUp, Mail, AlertCircle, ArrowRight, Handshake, Send, MessageSquare, CalendarCheck, User, Bug, ArrowUpWideNarrow, IceCream, TriangleAlert } from 'lucide-react';
+import {
+  ArrowRight,
+  ArrowDown,
+  AlertCircle,
+  CheckCircle,
+  Database,
+  PenTool,
+  Users,
+  Star,
+  Bell,
+  Calendar,
+  ShieldCheck,
+} from "lucide-react";
 import { motion } from 'framer-motion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NoelPFP from '@/lib/images/noel-pfp.png';
@@ -60,63 +72,132 @@ export default function ColdToWarmLanding() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      {/* Navigation */}
+    <main className="min-h-screen bg-[#040b14] text-white font-mulish">
       <NavBar />
 
-      {/* Hero Section */}
-      <header className="pt-32 pb-24 px-6 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+      {/* ═══════════════════════════════════════════════════════════════════
+        HERO
+    ═══════════════════════════════════════════════════════════════════ */}
+      <header
+        className="pt-32 pb-24 px-6 relative overflow-hidden"
+        style={{
+          background: "linear-gradient(160deg, #06122a 0%, #080d1c 55%, #120a03 100%)",
+        }}
+      >
+        {/* Ambient glows — intentional placement, not scattered */}
+        <div
+          className="absolute pointer-events-none rounded-full"
+          style={{
+            top: "-80px", left: "-80px",
+            width: "480px", height: "480px",
+            background: "radial-gradient(circle, rgba(30,80,180,0.13) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute pointer-events-none rounded-full"
+          style={{
+            bottom: "-60px", right: "-60px",
+            width: "360px", height: "360px",
+            background: "radial-gradient(circle, rgba(220,100,30,0.09) 0%, transparent 70%)",
+          }}
+        />
+
         <motion.div
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center relative z-10"
           initial="hidden"
           animate="visible"
+          variants={containerVariants}
         >
-          {/* Local Trust Badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/50 mb-6">
-            <GiMapleLeaf className="w-4 h-4 text-red-400" />
-            <span className="text-red-400 text-sm font-semibold uppercase tracking-wider">Local Edmonton Support</span>
+          {/* Pilot Rate Badge */}
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8"
+            style={{
+              background: "rgba(234,120,40,0.08)",
+              borderColor: "rgba(234,120,40,0.35)",
+            }}
+          >
+            <span className="relative flex h-[7px] w-[7px]">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-[7px] w-[7px] bg-orange-500" />
+            </span>
+            <span className="text-orange-400 text-[11px] font-sora font-bold uppercase tracking-widest">
+              $72/mo Pilot Rate — Edmonton Local
+            </span>
           </motion.div>
 
-          {/* Main Headline - Simple & Callous */}
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Remember those customers <br />
-            <span className="text-yellow-400">you saw last year?</span>
+          {/* Headline */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl md:text-7xl font-sora font-extrabold text-slate-100 mb-6 leading-[1.08] tracking-tight"
+          >
+            Your past clients <br />
+            <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
+              are getting cold.
+            </span>
           </motion.h1>
 
-          {/* Subheadline - The "Honest Neighbor" Pitch */}
-          <motion.p variants={itemVariants} className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            They aren’t gone—they just forgot you exist. We send honest, personal check-ins to your old clients so they come back to **your** shop instead of a big chain.
+          {/* Subheadline — FIXED: was rendering literal ** asterisks */}
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+          >
+            You did the work, but they&apos;ve already forgotten your name. We automatically{" "}
+            <strong className="text-slate-200 font-semibold">warm them up</strong>{" "}
+            with personal check-ins that turn old inspections into new 5-star reviews and referrals.
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 justify-center mb-16">
-            <Link href='/apply'>
-              <button className="cursor-pointer px-10 py-4 bg-yellow-400 text-black font-extrabold rounded-lg hover:bg-yellow-300 transition transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/20 text-lg">
-                Get My Customers Back <ArrowRight className="w-5 h-5" />
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center gap-3 justify-center mb-14"
+          >
+            <Link href="/apply">
+              <button className="cursor-pointer px-9 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-sora font-bold rounded-lg transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 shadow-lg shadow-orange-600/20 text-base tracking-wide">
+                Warm Up My Leads <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
             <Link href="#how-it-works">
-              <button className="cursor-pointer px-10 py-4 border-2 border-gray-600 text-white font-semibold rounded-lg hover:border-yellow-500 hover:text-yellow-400 transition text-lg">
-                See How It Works
+              <button className="cursor-pointer px-9 py-3.5 border border-white/10 bg-white/[0.03] hover:border-orange-500/50 hover:text-orange-400 hover:bg-orange-500/[0.04] text-slate-400 font-sora font-semibold rounded-lg transition-all text-base">
+                How It Works
               </button>
             </Link>
           </motion.div>
 
-          {/* ROI Statement - The "Found Money" Logic */}
-          <motion.div variants={itemVariants} className="relative inline-block p-8 rounded-2xl bg-gray-900/50 border border-red-500/30 backdrop-blur-sm">
-            <div className="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">The Reality</div>
-            <p className="text-gray-100 text-lg">
-              Most shops have <span className="bold">$20,000+</span> sitting in old files.
+          {/* ROI Box — FIXED: tracking-treset typo removed */}
+          <motion.div
+            variants={itemVariants}
+            className="relative inline-block px-10 py-8 rounded-2xl border max-w-lg mx-auto"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              borderColor: "rgba(255,255,255,0.08)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-700 text-blue-200 font-sora text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">
+              The Math
+            </div>
+            <p className="text-slate-200 font-sora text-lg font-medium leading-snug">
+              One referral pays for{" "}
+              <span className="text-orange-400 font-bold italic underline decoration-blue-500 underline-offset-2">
+                ~730 days
+              </span>{" "}
+              of this service.
             </p>
-            <p className="text-sm text-gray-400 mt-2">
-              We help you pull that money back into your bays without you lifting a finger.
+            <p className="text-sm text-slate-500 mt-3 italic leading-relaxed">
+              &ldquo;I&apos;m a local guy, not a tech giant. I just want to help your business stay top-of-mind.&rdquo;
             </p>
           </motion.div>
         </motion.div>
       </header>
 
-      {/* Problem Section */}
-      <section id="how-it-works" className="py-24 px-6 bg-gray-950">
+      {/* Section divider */}
+      <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+        PROBLEM — Why referrals go cold
+    ═══════════════════════════════════════════════════════════════════ */}
+      <section id="how-it-works" className="py-24 px-6 bg-[#050c18]">
         <motion.div
           className="max-w-6xl mx-auto"
           variants={containerVariants}
@@ -124,212 +205,260 @@ export default function ColdToWarmLanding() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Why good customers <span className="text-red-500">stop coming back</span>
+          <div className="text-center mb-14">
+            <span className="inline-block font-sora text-[10px] font-bold tracking-[0.15em] uppercase text-blue-400 border border-blue-500/30 bg-blue-500/[0.07] px-3 py-1 rounded-full mb-5">
+              The Problem
+            </span>
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-slate-100 mb-4 tracking-tight">
+              Why good referrals <span className="text-blue-400">go cold</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              You are great at fixing cars. But you are busy. When a customer leaves your shop, they usually don't hear from you again. By the time they need more work, they've forgotten your name.
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+              You provide an incredible inspection. But once the report is sent, you disappear. By the
+              time your client&apos;s friend buys a house, your name is long forgotten.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* The Wrong Way */}
-            <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-red-950/10 border border-red-500/30">
-              <AlertCircle className="w-12 h-12 text-red-500 mb-4" aria-hidden="true" />
-              <h3 className="text-2xl font-bold text-white mb-3">The "Silent" Way</h3>
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold">×</span>
-                  <span>You finish a job. The customer is happy and drives away.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold">×</span>
-                  <span>Their name and number sit in your files, gathering dust.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span>A few months later, their brakes start making a noise.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold">×</span>
-                  <span>They can't remember your shop's name.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold text-lg">!</span>
-                  <span className="text-white font-semibold">They go to a big chain shop instead. You lose a $1,000 job.</span>
-                </li>
+          <div className="grid md:grid-cols-2 gap-5 mb-6">
+            {/* Wrong Way */}
+            <motion.div
+              variants={itemVariants}
+              className="p-8 rounded-2xl border"
+              style={{ background: "rgba(30,58,138,0.07)", borderColor: "rgba(59,130,246,0.18)" }}
+            >
+              <div className="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5">
+                <AlertCircle className="w-5 h-5 text-blue-400" aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-sora font-bold text-slate-200 mb-5 tracking-tight">
+                The &ldquo;One &amp; Done&rdquo; Way
+              </h3>
+              <ul className="space-y-3.5">
+                {[
+                  { marker: "×", color: "text-blue-400", text: "You finish the inspection. The buyer moves in and gets busy." },
+                  { marker: "×", color: "text-blue-400", text: "Your contact info sits in a buried email attachment, gathering dust." },
+                  { marker: "×", color: "text-blue-400", text: "A year later, their brother-in-law asks for an inspector recommendation." },
+                  { marker: "×", color: "text-blue-400", text: "They can't remember your name, so they just Google \"local inspector.\"" },
+                  { marker: "!", color: "text-red-400", text: "You lose a $500 job and a potential 5-year referral partner.", bold: true },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm leading-relaxed">
+                    <span className={`${item.color} font-sora font-bold flex-shrink-0 mt-0.5 w-4`}>{item.marker}</span>
+                    <span className={item.bold ? "text-slate-200 font-semibold" : "text-slate-400"}>{item.text}</span>
+                  </li>
+                ))}
               </ul>
             </motion.div>
 
-            {/* The Right Way */}
-            <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-green-950/10 border border-green-500/30">
-              <CheckCircle className="w-12 h-12 text-green-500 mb-4" aria-hidden="true" />
-              <h3 className="text-2xl font-bold text-white mb-3">The "Cold To Warm" Way</h3>
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>You focus on the cars. We handle the talking.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>We send them a "Thank You" and a helpful car guide.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>We remind them when it is time for winter tires or AC checks.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">✓</span>
-                  <span>The customer feels like you are a friend they can trust.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-yellow-400 font-bold text-lg">$</span>
-                  <span className="text-white font-semibold">When their car breaks, they call YOU first. Every time.</span>
-                </li>
+            {/* Right Way */}
+            <motion.div
+              variants={itemVariants}
+              className="p-8 rounded-2xl border"
+              style={{ background: "rgba(124,45,18,0.07)", borderColor: "rgba(234,88,12,0.22)" }}
+            >
+              <div className="w-11 h-11 rounded-xl bg-orange-500/10 flex items-center justify-center mb-5">
+                <CheckCircle className="w-5 h-5 text-orange-400" aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-sora font-bold text-slate-200 mb-5 tracking-tight">
+                The &ldquo;Cold To Warm&rdquo; Way
+              </h3>
+              <ul className="space-y-3.5">
+                {[
+                  { marker: "✓", color: "text-orange-400", text: "You focus on the home. We handle the long-term relationship." },
+                  { marker: "✓", color: "text-orange-400", text: "We send a \"Happy Move-In\" note and a seasonal maintenance checklist." },
+                  { marker: "✓", color: "text-orange-400", text: "We secure the 5-star review while they're still in the honeymoon phase." },
+                  { marker: "✓", color: "text-orange-400", text: "The buyer (and their Realtor) views you as their permanent home expert." },
+                  { marker: "$", color: "text-yellow-400", text: "When their friends buy, YOUR name is the only one they share.", bold: true },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm leading-relaxed">
+                    <span className={`${item.color} font-sora font-bold flex-shrink-0 mt-0.5 w-4`}>{item.marker}</span>
+                    <span className={item.bold ? "text-slate-200 font-semibold" : "text-slate-400"}>{item.text}</span>
+                  </li>
+                ))}
               </ul>
             </motion.div>
           </div>
 
-          <motion.div variants={itemVariants} className="mt-16 p-8 rounded-2xl bg-yellow-500/5 border border-yellow-500/20 text-center">
-            <p className="text-lg text-white">
-              <span className="font-bold">The Fact:</span> It is much cheaper to keep an old customer than to find a new one.
-            </p>
-            <p className="text-gray-400 mt-2">Stop chasing new strangers. Start talking to the people who already know you.</p>
+          {/* Stat Banner — upgraded from a plain paragraph */}
+          <motion.div
+            variants={itemVariants}
+            className="p-7 rounded-2xl border flex flex-wrap items-center justify-between gap-6"
+            style={{ background: "rgba(234,88,12,0.05)", borderColor: "rgba(234,88,12,0.15)" }}
+          >
+            <div className="flex items-center gap-8 flex-wrap">
+              <div className="text-center">
+                <p className="text-4xl font-sora font-extrabold text-blue-400 tracking-tight">80%</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mt-1">
+                  Would reuse their inspector
+                </p>
+              </div>
+              <span className="text-2xl font-sora font-bold text-white/10">vs</span>
+              <div className="text-center">
+                <p className="text-4xl font-sora font-extrabold text-orange-400 tracking-tight">12%</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mt-1">
+                  Actually do
+                </p>
+              </div>
+            </div>
+            <div className="max-w-xs">
+              <p className="text-slate-300 font-semibold text-sm leading-relaxed">
+                The only difference is who stays warm in their inbox.
+              </p>
+              <p className="text-slate-500 text-xs italic mt-1">We close that gap — automatically.</p>
+            </div>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Solution Section */}
-      <section className="py-24 px-6 bg-black">
+      <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+        SOLUTION — The Warm-Up Process
+    ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#040b14]">
         <motion.div
-          className="max-w-6xl mx-auto"
+          className="max-w-5xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              How it works
+          <div className="text-center mb-14">
+            <span className="inline-block font-sora text-[10px] font-bold tracking-[0.15em] uppercase text-orange-400 border border-orange-500/30 bg-orange-500/[0.07] px-3 py-1 rounded-full mb-5">
+              How It Works
+            </span>
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-slate-100 mb-4 tracking-tight">
+              The &ldquo;Warm Up&rdquo; Process
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              We send friendly emails from your shop. It’s not annoying ads. It’s just staying in touch so you stay busy.
+            <p className="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
+              We bridge the gap between &ldquo;Job Completed&rdquo; and &ldquo;Lifetime Referral.&rdquo;
             </p>
           </div>
 
-          {/* Visual Workflow */}
-          <div className="mb-16">
-            <div className="space-y-8">
-
-              {/* Step 1 */}
-              <motion.div variants={itemVariants} className="flex items-center gap-8">
-                <div className="flex-shrink-0 hidden lg:block">
-                  <div className="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-400 text-black font-bold text-2xl">
-                    1
-                  </div>
+          <div className="space-y-5">
+            {/* Step 1 */}
+            <motion.div variants={itemVariants} className="flex items-start gap-6">
+              <div className="flex-shrink-0 hidden lg:flex flex-col items-center gap-2 pt-8">
+                <div className="w-12 h-12 rounded-full bg-blue-700 border-2 border-blue-400 flex items-center justify-center font-sora font-bold text-lg text-white shadow-[0_0_16px_rgba(37,99,235,0.4)]">
+                  1
                 </div>
-                <div className="flex-grow">
-                  <div className="rounded-2xl p-8 bg-gray-900 border border-yellow-500/30">
-                    <div className="flex items-start gap-4 mb-3">
-                      <MessageSquare className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">Send us your customer list</h3>
-                    </div>
-                    <p className="text-gray-400">Send us the names and emails of people who have been to your shop before. These are the people who already know and trust you.</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Easy to upload</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <div className="flex justify-center">
-                <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="text-yellow-400">
-                  <ArrowRight className="w-6 h-6 rotate-90" />
-                </motion.div>
+                <div className="w-px h-16 bg-gradient-to-b from-blue-500/30 to-transparent" />
               </div>
-
-              {/* Step 2 */}
-              <motion.div variants={itemVariants} className="flex items-center gap-8">
-                <div className="flex-shrink-0 hidden lg:block">
-                  <div className="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-400 text-black font-bold text-2xl">
-                    2
-                  </div>
+              <div
+                className="flex-grow p-8 rounded-2xl border"
+                style={{ background: "rgba(15,30,70,0.5)", borderColor: "rgba(59,130,246,0.2)" }}
+              >
+                <div className="flex items-start gap-4 mb-3">
+                  <Database className="w-7 h-7 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <h3 className="text-xl font-sora font-bold text-slate-200 tracking-tight">
+                    Sync Your Past Reports
+                  </h3>
                 </div>
-                <div className="flex-grow">
-                  <div className="rounded-2xl p-8 bg-gray-900 border border-yellow-500/30">
-                    <div className="flex items-start gap-4 mb-3">
-                      <CalendarCheck className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">We write the friendly notes</h3>
-                    </div>
-                    <p className="text-gray-400">We write "thank you" notes and reminders for things like winter tires or oil changes. Everything is sent from YOUR shop’s email address so it looks personal.</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">No spam</span>
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Ready in 7 days</span>
-                    </div>
-                  </div>
+                <p className="text-slate-400 text-sm leading-relaxed ml-11">
+                  Export your client list from your inspection software. These are your &ldquo;Cold&rdquo; leads —
+                  people you&apos;ve already helped who just need a nudge.
+                </p>
+                <div className="mt-4 ml-11">
+                  <span className="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[11px] font-semibold uppercase tracking-wider">
+                    Works with any software
+                  </span>
                 </div>
-              </motion.div>
-
-              <div className="flex justify-center">
-                <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }} className="text-yellow-400">
-                  <ArrowRight className="w-6 h-6 rotate-90" />
-                </motion.div>
               </div>
+            </motion.div>
 
-              {/* Step 3 */}
-              <motion.div variants={itemVariants} className="flex items-center gap-8">
-                <div className="flex-shrink-0 hidden lg:block">
-                  <div className="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-400 text-black font-bold text-2xl">
-                    3
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <div className="rounded-2xl p-8 bg-gray-900 border border-yellow-500/30">
-                    <div className="flex items-start gap-4 mb-3">
-                      <Send className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">They see your name again</h3>
-                    </div>
-                    <p className="text-gray-400">Your customers get an email that feels like a real person sent it. They remember that you are the expert who helped them last time.</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Sent every month</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <div className="flex justify-center">
-                <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }} className="text-yellow-400">
-                  <ArrowRight className="w-6 h-6 rotate-90" />
-                </motion.div>
-              </div>
-
-              {/* Step 4 */}
-              <motion.div variants={itemVariants} className="flex items-center gap-8">
-                <div className="flex-shrink-0 hidden lg:block">
-                  <div className="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-400 text-black font-bold text-2xl">
-                    4
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <div className="rounded-2xl p-8 bg-gradient-to-r from-yellow-500/20 to-yellow-500/5 border border-yellow-400">
-                    <div className="flex items-start gap-4 mb-3">
-                      <Handshake className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
-                      <h3 className="text-2xl font-bold text-white">They call you for more work</h3>
-                    </div>
-                    <p className="text-gray-400">The customer calls you when they need a repair. You do the job, you get paid, and you keep the profit. We handled the talk, you handled the car.</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-semibold">Get more repeat business</span>
-                    </div>
-                  </div>
-                </div>
+            {/* Connector */}
+            <div className="flex justify-center lg:justify-start lg:pl-[54px]">
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-slate-700"
+              >
+                <ArrowDown className="w-5 h-5" />
               </motion.div>
             </div>
+
+            {/* Step 2 */}
+            <motion.div variants={itemVariants} className="flex items-start gap-6">
+              <div className="flex-shrink-0 hidden lg:flex flex-col items-center gap-2 pt-8">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center font-sora font-bold text-lg text-white"
+                  style={{ background: "linear-gradient(to bottom, #3b82f6, #ea580c)" }}
+                >
+                  2
+                </div>
+                <div className="w-px h-16 bg-gradient-to-b from-orange-500/30 to-transparent" />
+              </div>
+              <div
+                className="flex-grow p-8 rounded-2xl border"
+                style={{ background: "rgba(60,20,5,0.4)", borderColor: "rgba(234,88,12,0.2)" }}
+              >
+                <div className="flex items-start gap-4 mb-3">
+                  <PenTool className="w-7 h-7 text-orange-400 flex-shrink-0 mt-0.5" />
+                  <h3 className="text-xl font-sora font-bold text-slate-200 tracking-tight">
+                    We Personalize the &ldquo;Warm-Up&rdquo;
+                  </h3>
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed ml-11">
+                  We don&apos;t send generic ads. We send helpful maintenance reminders, 11-month warranty alerts,
+                  and &ldquo;New Home&rdquo; tips that make you look like a concierge.
+                </p>
+                <div className="mt-4 ml-11 flex flex-wrap gap-2">
+                  <span className="inline-block px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-[11px] font-semibold uppercase tracking-wider">
+                    100% Automated
+                  </span>
+                  <span className="inline-block px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-[11px] font-semibold uppercase tracking-wider">
+                    Sent from your name
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Connector */}
+            <div className="flex justify-center lg:justify-start lg:pl-[54px]">
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+                className="text-slate-700"
+              >
+                <ArrowDown className="w-5 h-5" />
+              </motion.div>
+            </div>
+
+            {/* Step 3 */}
+            <motion.div variants={itemVariants} className="flex items-start gap-6">
+              <div className="flex-shrink-0 hidden lg:flex flex-col items-center pt-8">
+                <div className="w-12 h-12 rounded-full bg-orange-700 border-2 border-orange-400 flex items-center justify-center font-sora font-bold text-lg text-white shadow-[0_0_16px_rgba(234,88,12,0.4)]">
+                  3
+                </div>
+              </div>
+              <div
+                className="flex-grow p-8 rounded-2xl border"
+                style={{ background: "rgba(60,20,5,0.55)", borderColor: "rgba(234,88,12,0.35)" }}
+              >
+                <div className="flex items-start gap-4 mb-3">
+                  <Users className="w-7 h-7 text-orange-400 flex-shrink-0 mt-0.5" />
+                  <h3 className="text-xl font-sora font-bold text-slate-200 tracking-tight">
+                    Referrals on Autopilot
+                  </h3>
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed ml-11">
+                  When their friends or neighbors need an inspection, your name is at the top of their inbox.
+                  You stay warm, the referrals stay consistent, and your business grows.
+                </p>
+                <div className="mt-4 ml-11">
+                  <span className="inline-block px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-[11px] font-semibold uppercase tracking-wider">
+                    Dominant Local Presence
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </section>
 
-      {/* Results Section */}
-      <section className="py-24 px-6 bg-gray-950">
+      <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+        RESULTS — What to expect + About Noel
+    ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#050c18]">
         <motion.div
           className="max-w-6xl mx-auto"
           variants={containerVariants}
@@ -337,54 +466,86 @@ export default function ColdToWarmLanding() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-14">
+            <span className="inline-block font-sora text-[10px] font-bold tracking-[0.15em] uppercase text-orange-400 border border-orange-500/30 bg-orange-500/[0.07] px-3 py-1 rounded-full mb-5">
+              Results
+            </span>
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-slate-100 mb-4 tracking-tight">
               What to expect
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border border-yellow-500/50 text-center flex flex-col items-center justify-center min-h-[280px]">
-              <p className="text-5xl font-bold text-yellow-400 mb-2">1 in 4</p>
-              <p className="text-white font-semibold text-lg">Customers Come Back</p>
-              <p className="text-gray-400 text-sm mt-2">Old customers who see your email and book a new service.</p>
+          {/* Metric Cards */}
+          <div className="grid md:grid-cols-3 gap-5 mb-8">
+            <motion.div
+              variants={itemVariants}
+              className="p-8 rounded-2xl border text-center flex flex-col items-center justify-center min-h-[240px]"
+              style={{ background: "rgba(30,58,138,0.12)", borderColor: "rgba(59,130,246,0.25)" }}
+            >
+              <p className="text-5xl font-sora font-extrabold text-blue-400 tracking-tight mb-2">3–5</p>
+              <p className="text-slate-200 font-sora font-bold text-base mb-2">New Reviews Monthly</p>
+              <p className="text-slate-500 text-sm leading-relaxed">
+                Consistent 5-star feedback that pushes you to the top of Google Maps.
+              </p>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border border-yellow-500/50 text-center flex flex-col items-center justify-center min-h-[280px]">
-              <p className="text-5xl font-bold text-yellow-400 mb-2">10+ hrs</p>
-              <p className="text-white font-semibold text-lg">Saved Every Month</p>
-              <p className="text-gray-400 text-sm mt-2">You don't have to spend time calling or texting old clients yourself.</p>
+            <motion.div
+              variants={itemVariants}
+              className="p-8 rounded-2xl border text-center flex flex-col items-center justify-center min-h-[240px]"
+              style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}
+            >
+              <p className="text-5xl font-sora font-extrabold text-slate-100 tracking-tight mb-2">100%</p>
+              <p className="text-slate-200 font-sora font-bold text-base mb-2">Automated Reach-out</p>
+              <p className="text-slate-500 text-sm leading-relaxed">
+                You never have to remember to &ldquo;follow up&rdquo; again. The system does the heavy lifting.
+              </p>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border border-yellow-500/50 text-center flex flex-col justify-center min-h-[280px]">
-              <div className='relative mb-5'>
-                <p className="text-5xl font-bold text-yellow-400 mb-2">2-5</p>
-                <p className="text-white font-semibold text-lg">Extra Cars Per Week</p>
-                <p className="text-gray-400 text-sm mt-2">More cars in your bays because people finally remember you.</p>
-              </div>
-              <p className="text-gray-500 text-xs mt-0 italic border-t border-yellow-500/30 pt-3 text-center">
-                *Results depend on how many people are in your old files.
+            <motion.div
+              variants={itemVariants}
+              className="p-8 rounded-2xl border text-center flex flex-col items-center justify-center min-h-[240px]"
+              style={{ background: "rgba(124,45,18,0.12)", borderColor: "rgba(234,88,12,0.25)" }}
+            >
+              <p className="text-5xl font-sora font-extrabold text-orange-400 tracking-tight mb-2">24mo</p>
+              <p className="text-slate-200 font-sora font-bold text-base mb-2">ROI Guarantee</p>
+              <p className="text-slate-500 text-sm leading-relaxed mb-3">
+                One single referral pays for two full years of this service.
+              </p>
+              <p className="text-slate-600 text-xs italic border-t border-orange-500/20 pt-3 w-full text-center">
+                *Based on consistent monthly inspection volume.
               </p>
             </motion.div>
           </div>
 
-          {/* About Me Section */}
-          <motion.div variants={itemVariants} className="p-8 rounded-2xl bg-gray-900 border border-yellow-500/50">
+          {/* About Noel */}
+          <motion.div
+            variants={itemVariants}
+            className="p-8 rounded-2xl border"
+            style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}
+          >
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="flex-shrink-0">
-                <Avatar className="w-32 h-32">
+                <Avatar className="w-28 h-28 border-2 border-orange-500/60 shadow-[0_0_24px_rgba(234,88,12,0.25)]">
                   <AvatarImage src={NoelPFP.src} alt="Noel" />
-                  <AvatarFallback className="text-2xl font-bold bg-yellow-400 text-black">NR</AvatarFallback>
+                  <AvatarFallback className="text-xl font-sora font-bold bg-orange-600 text-white">NR</AvatarFallback>
                 </Avatar>
               </div>
               <div className="flex-grow">
-                <h2 className="text-2xl font-bold text-white mb-2">Hi, I'm Noel 👋🏿</h2>
-                <p className="text-yellow-400 font-semibold mb-4 text-lg">I help local auto shops get busy</p>
-                <p className="text-gray-300 leading-relaxed text-lg">
-                  I saw that many local mechanics lose money because they are too busy to talk to old customers. I build simple systems that do the talking for you.
+                <h2 className="text-2xl font-sora font-bold text-slate-100 mb-1 tracking-tight">
+                  Hi, I&apos;m Noel 👋🏿
+                </h2>
+                <p className="text-orange-400 font-semibold mb-4 text-sm uppercase tracking-wider">
+                  I help local inspectors stay top-of-mind
                 </p>
-                <p className="text-gray-300 leading-relaxed mt-3 text-lg">
-                  I’m not a big marketing company. I’m just a guy who knows how to use software to help honest shop owners make more money. You fix the cars. I’ll make sure they keep coming back.
+                <p className="text-slate-400 leading-relaxed text-base mb-3">
+                  I noticed that home inspectors do the hardest work in the real estate chain, but they usually
+                  get forgotten as soon as the move-in truck arrives. I build systems that keep you &ldquo;Warm&rdquo;
+                  in your client&apos;s inbox.
+                </p>
+                <p className="text-slate-400 leading-relaxed text-base">
+                  I&apos;m an Edmonton local, not some giant agency. I use simple automation to make sure when your
+                  clients (or their Realtors) think of a home inspection, they only think of{" "}
+                  <strong className="text-slate-200 font-semibold">YOU</strong>.
                 </p>
               </div>
             </div>
@@ -392,8 +553,12 @@ export default function ColdToWarmLanding() {
         </motion.div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-6 bg-black">
+      <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+        PRICING
+    ═══════════════════════════════════════════════════════════════════ */}
+      <section id="pricing" className="py-24 px-6 bg-[#040b14]">
         <motion.div
           className="max-w-6xl mx-auto"
           variants={containerVariants}
@@ -401,67 +566,85 @@ export default function ColdToWarmLanding() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-14">
+            <span className="inline-block font-sora text-[10px] font-bold tracking-[0.15em] uppercase text-orange-400 border border-orange-500/30 bg-orange-500/[0.07] px-3 py-1 rounded-full mb-5">
+              Pricing
+            </span>
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-slate-100 mb-4 tracking-tight">
               Simple Pricing
             </h2>
-            <p className="text-xl text-gray-400">
-              Just $72 a month. We talk to your old customers for you. Cancel anytime.
+            <p className="text-lg text-slate-500">
+              Just $72 a month to keep every past client warm. No setup fees. Cancel anytime.
             </p>
           </div>
 
           <motion.div
             variants={itemVariants}
-            className="max-w-2xl mx-auto p-8 rounded-2xl bg-gray-900 border-2 border-yellow-400 shadow-2xl shadow-yellow-400/30 text-center"
+            className="max-w-xl mx-auto p-8 rounded-3xl border-2 border-orange-500/70 relative overflow-hidden text-center"
+            style={{ background: "rgba(15,10,5,0.9)" }}
           >
-            <p className="text-gray-400 text-sm uppercase tracking-widest font-bold mb-4">EARLY BIRD DEAL — 32% OFF</p>
-
-            {/* Monthly Price */}
-            <div className="flex justify-center items-baseline mb-2">
-              <span className="text-3xl font-bold line-through text-gray-500 mr-4">$106</span>
-              <p className="text-6xl font-bold text-yellow-400">$72<span className="text-2xl text-gray-400">/month</span></p>
+            {/* Corner ribbon */}
+            <div className="absolute top-0 right-0 bg-orange-600 text-white font-sora text-[10px] font-black px-5 py-1.5 rounded-bl-xl uppercase tracking-widest">
+              Edmonton Pilot Rate
             </div>
 
-            {/* Countdown Timer Section */}
-            <div className="mb-8 p-3 bg-gray-800 rounded-lg border border-yellow-500/50">
-              <p className="text-sm font-semibold text-yellow-400 mb-1">Low Price Offer Left For</p>
-              <div className={`text-xl font-mono text-white ${timeLeft.expired ? 'text-red-500' : ''}`}>
-                5 Potentials
-              </div>
+            <p className="text-slate-500 text-[11px] uppercase tracking-[0.18em] font-bold mb-5">
+              Founding Member Deal
+            </p>
+
+            {/* Price */}
+            <div className="flex justify-center items-baseline gap-4 mb-2">
+              <span className="text-2xl font-sora font-bold line-through text-slate-600">$106</span>
+              <span className="text-6xl font-sora font-extrabold text-slate-100 tracking-tight">
+                $72<span className="text-xl text-slate-500 font-normal">/mo</span>
+              </span>
             </div>
 
-            <ul className="space-y-4 mb-8 text-left">
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300">Notes sent to your old customers from YOUR shop</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300">Reminders for winter tires, oil changes, and more</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <TriangleAlert className="w-5 h-5 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300">We tell you the second a customer wants to book</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <ArrowUpWideNarrow className="w-5 h-5 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300">Add new customers to the list anytime</span>
-              </li>
+            {/* Scarcity */}
+            <div className="mb-8 px-4 py-2.5 rounded-lg border inline-block"
+              style={{ background: "rgba(234,88,12,0.08)", borderColor: "rgba(234,88,12,0.25)" }}>
+              <p className="text-sm font-sora font-semibold text-orange-400">
+                Only 5 spots left at this rate
+              </p>
+            </div>
+
+            {/* Features */}
+            <ul className="space-y-3.5 mb-8 text-left">
+              {[
+                { icon: Star, text: "Automated 5-Star Review Requests" },
+                { icon: Bell, text: "Seasonal Maintenance Checklists (Sent as YOU)" },
+                { icon: Calendar, text: "11-Month Warranty Inspection Reminders" },
+                { icon: ShieldCheck, text: "Lifetime Referral \"Warm-up\" Sequence" },
+              ].map(({ icon: Icon, text }, i) => (
+                <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
+                  <Icon className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                  <span>{text}</span>
+                </li>
+              ))}
             </ul>
 
             <Link href="/apply">
-              <button className="cursor-pointer w-full py-4 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-300 transition transform hover:scale-105 text-lg">
-                Start Getting Customers Back
+              <button className="cursor-pointer w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-sora font-bold rounded-xl transition-all hover:-translate-y-0.5 text-base tracking-wide shadow-lg shadow-orange-600/20">
+                Claim My Pilot Spot
               </button>
             </Link>
 
-            <p className="text-gray-400 text-sm mt-4">(The respective discount is permanent)</p>
+            <p className="text-slate-600 text-xs mt-4 italic">
+              This discount is locked in for the life of your account.
+            </p>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-6 bg-gradient-to-r from-black via-gray-900 to-black">
+      <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+        FINAL CTA
+    ═══════════════════════════════════════════════════════════════════ */}
+      <section
+        className="py-24 px-6"
+        style={{ background: "linear-gradient(to bottom, #040b14, #0d0500)" }}
+      >
         <motion.div
           className="max-w-4xl mx-auto text-center"
           variants={containerVariants}
@@ -469,20 +652,37 @@ export default function ColdToWarmLanding() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Stop letting your <br /> <span className="text-red-500">old customers forget you</span>
-          </h2>
-          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-            Start getting your regulars back into your shop this week. For just $72 a month, we make sure they call YOU when they need work.
-          </p>
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-6xl font-sora font-extrabold text-slate-100 mb-6 leading-[1.08] tracking-tight"
+          >
+            Stop letting your <br />
+            <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
+              referrals go cold
+            </span>
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed"
+          >
+            One inspection pays for the whole year. Start turning your past reports into your future business today.
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
             <Link href="/apply">
-              <button className="cursor-pointer px-10 py-5 bg-yellow-400 text-black font-extrabold rounded-lg hover:bg-yellow-300 transition transform hover:scale-105 flex items-center justify-center gap-2 text-xl shadow-xl shadow-yellow-400/20">
-                Get My Customers Back <ArrowRight className="w-6 h-6" />
+              <button className="cursor-pointer px-10 py-4 bg-white hover:bg-orange-400 text-black hover:text-white font-sora font-extrabold rounded-lg transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg shadow-xl shadow-white/10">
+                Warm Up My Business <ArrowRight className="w-5 h-5" />
               </button>
             </Link>
           </motion.div>
-          <p className="text-gray-500 mt-6 text-sm">No long contracts. Cancel whenever you want.</p>
+
+          <motion.p variants={itemVariants} className="text-slate-600 mt-6 text-sm">
+            No long contracts. Edmonton-owned &amp; operated.
+          </motion.p>
         </motion.div>
       </section>
 
